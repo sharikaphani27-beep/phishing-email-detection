@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Email Detector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+            </div>
+            <h1>Phishing Email Detector</h1>
+            <p class="subtitle">Analyze emails to detect potential phishing attempts</p>
+        </header>
+
+        <main>
+            <form id="detectionForm">
+                <div class="form-group">
+                    <label for="emailSubject">Email Subject</label>
+                    <input type="text" id="emailSubject" name="emailSubject" placeholder="Enter email subject..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="emailBody">Email Body</label>
+                    <textarea id="emailBody" name="emailBody" rows="6" placeholder="Paste email body here..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="url">URL Found in Email</label>
+                    <input type="text" id="url" name="url" placeholder="https://example.com/..." required>
+                </div>
+
+                <div class="checkboxes">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="hasSuspiciousKeywords" name="hasSuspiciousKeywords">
+                        <span class="checkmark"></span>
+                        Contains Suspicious Keywords
+                    </label>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="hasIPInURL" name="hasIPInURL">
+                        <span class="checkmark"></span>
+                        Has IP Address in URL
+                    </label>
+
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="hasAttachment" name="hasAttachment">
+                        <span class="checkmark"></span>
+                        Has Attachment
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="numLinks">Number of Links</label>
+                    <input type="number" id="numLinks" name="numLinks" min="0" value="0" required>
+                </div>
+
+                <button type="submit" class="btn-analyze">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="M21 21l-4.35-4.35"/>
+                    </svg>
+                    Analyze Email
+                </button>
+            </form>
+
+            <div id="result" class="result hidden">
+                <div class="result-header">
+                    <span id="resultIcon"></span>
+                    <h2 id="resultTitle"></h2>
+                </div>
+                <p id="resultMessage"></p>
+                <div class="confidence">
+                    <label>Confidence Level</label>
+                    <div class="confidence-bar">
+                        <div id="confidenceFill" class="confidence-fill"></div>
+                    </div>
+                    <span id="confidencePercent">0%</span>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Powered by Machine Learning</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
