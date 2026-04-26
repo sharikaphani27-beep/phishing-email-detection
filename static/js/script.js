@@ -109,8 +109,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultIcon = document.getElementById('resultIcon');
         const confidenceFill = document.getElementById('confidenceFill');
         const confidencePercent = document.getElementById('confidencePercent');
+        const factorsList = document.getElementById('factorsList');
 
         resultIcon.innerHTML = '';
+        factorsList.innerHTML = '';
+
+        if (result.factors && result.factors.length > 0) {
+            result.factors.forEach(factor => {
+                const li = document.createElement('li');
+                li.textContent = factor;
+                factorsList.appendChild(li);
+            });
+            document.querySelector('.factors-section').style.display = 'block';
+        }
 
         if (result.isPhishing) {
             resultDiv.classList.add('phishing');
