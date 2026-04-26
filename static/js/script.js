@@ -107,21 +107,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultTitle = document.getElementById('resultTitle');
         const resultMessage = document.getElementById('resultMessage');
         const resultIcon = document.getElementById('resultIcon');
-        const confidenceFill = document.getElementById('confidenceFill');
-        const confidencePercent = document.getElementById('confidencePercent');
         const factorsList = document.getElementById('factorsList');
+
+        const safePercent = result.isPhishing ? (100 - result.confidence) : result.confidence;
+        const phishingPercent = result.isPhishing ? result.confidence : (100 - result.confidence);
+
+        document.getElementById('safePercent').textContent = safePercent + '%';
+        document.getElementById('phishingPercent').textContent = phishingPercent + '%';
+        document.getElementById('safeFill').style.width = safePercent + '%';
+        document.getElementById('phishingFill').style.width = phishingPercent + '%';
 
         resultIcon.innerHTML = '';
         factorsList.innerHTML = '';
-
-        if (result.factors && result.factors.length > 0) {
-            result.factors.forEach(factor => {
-                const li = document.createElement('li');
-                li.textContent = factor;
-                factorsList.appendChild(li);
-            });
-            document.querySelector('.factors-section').style.display = 'block';
-        }
 
         if (result.isPhishing) {
             resultDiv.classList.add('phishing');
@@ -135,8 +132,14 @@ document.addEventListener('DOMContentLoaded', function() {
             resultIcon.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
         }
 
-        confidenceFill.style.width = result.confidence + '%';
-        confidencePercent.textContent = result.confidence + '%';
+        if (result.factors && result.factors.length > 0) {
+            result.factors.forEach(factor => {
+                const li = document.createElement('li');
+                li.textContent = factor;
+                factorsList.appendChild(li);
+            });
+            document.querySelector('.factors-section').style.display = 'block';
+        }
 
         resultDiv.classList.remove('hidden');
     }

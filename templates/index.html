@@ -76,11 +76,23 @@
                 </div>
                 <p id="resultMessage"></p>
                 <div class="confidence">
-                    <label>Confidence Level</label>
-                    <div class="confidence-bar">
-                        <div id="confidenceFill" class="confidence-fill"></div>
+                    <label>Analysis Result</label>
+                    <div class="confidence-bars">
+                        <div class="confidence-item">
+                            <span class="confidence-label safe">Safe</span>
+                            <div class="confidence-bar">
+                                <div id="safeFill" class="confidence-fill safe"></div>
+                            </div>
+                            <span id="safePercent">0%</span>
+                        </div>
+                        <div class="confidence-item">
+                            <span class="confidence-label phishing">Phishing</span>
+                            <div class="confidence-bar">
+                                <div id="phishingFill" class="confidence-fill phishing"></div>
+                            </div>
+                            <span id="phishingPercent">0%</span>
+                        </div>
                     </div>
-                    <span id="confidencePercent">0%</span>
                 </div>
                 <div class="factors-section" style="display: none;">
                     <label>Detected Features</label>

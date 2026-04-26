@@ -288,7 +288,7 @@ textarea {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.confidence label {
+.confidence > label {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--gray);
@@ -296,76 +296,62 @@ textarea {
     letter-spacing: 0.05em;
 }
 
-.confidence-bar {
-    height: 8px;
+.confidence-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.confidence-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.confidence-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    width: 60px;
+}
+
+.confidence-label.safe {
+    color: var(--success);
+}
+
+.confidence-label.phishing {
+    color: var(--danger);
+}
+
+.confidence-item .confidence-bar {
+    flex: 1;
+    height: 10px;
     background: var(--gray-light);
-    border-radius: 4px;
-    margin: 0.5rem 0;
+    border-radius: 5px;
     overflow: hidden;
 }
 
 .confidence-fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: 5px;
     transition: width 0.5s ease-out;
 }
 
-.result.phishing .confidence-fill {
-    background: linear-gradient(90deg, var(--danger-light), var(--danger));
-}
-
-.result.safe .confidence-fill {
-    background: linear-gradient(90deg, var(--success-light), var(--success));
-}
-
-#confidencePercent {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.factors-section {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.factors-section label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--gray);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.factors-section ul {
-    list-style: none;
-    margin-top: 0.5rem;
-}
-
-.factors-section li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.375rem 0;
-    font-size: 0.8125rem;
-    color: var(--dark);
-}
-
-.factors-section li::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--danger);
-    flex-shrink: 0;
-}
-
-.result.safe .factors-section li::before {
+.confidence-fill.safe {
     background: var(--success);
 }
 
-footer {
+.confidence-fill.phishing {
+    background: var(--danger);
+}
+
+#safePercent, #phishingPercent {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--dark);
+    width: 40px;
+    text-align: right;
+}
     padding: 1.5rem 2rem;
     text-align: center;
     border-top: 1px solid var(--gray-light);
